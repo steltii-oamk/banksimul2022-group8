@@ -1,8 +1,10 @@
 const mysql = require('mysql');
+require("dotenv").config();
+
 const connection = mysql.createPool({
-  host: 'localhost',
-  user: 'netuser',
-  password: 'netpass',
-  database: 'netdb'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_DATABASE
 });
 module.exports = connection;
