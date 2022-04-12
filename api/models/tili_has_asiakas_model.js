@@ -6,7 +6,7 @@ const Tili_has_Asiakas={
     return db.query('select * from Tili_has_Asiakas', callback);
   },
   getById: function(id, callback) {
-    return db.query('select * from Tili_has_Asiakas where idTili_has_Asiakas=?', [id], callback);
+    return db.query('select * from Tili_has_Asiakas where idAsiakas=?', [id], callback);
   },
   add: function(Tili_has_Asiakas, callback) {
     return db.query(
@@ -16,11 +16,11 @@ const Tili_has_Asiakas={
     );
   },
   delete: function(id, callback) {
-    return db.query('delete from Tili_has_Asiakas where idTili_has_Asiakas=?', [id], callback);
+    return db.query('delete from Tili_has_Asiakas where idAsiakas=?', [id], callback);
   },
   update: function(id, Tili_has_Asiakas, callback) {
     return db.query(
-      'update Tili_has_Asiakas set idTili=? where idTili_has_Asiakas=?',
+      'update Tili_has_Asiakas set idTili=? where idAsiakas=?',
       [Tili_has_Asiakas.idOpintojakso, id],
       callback
     );

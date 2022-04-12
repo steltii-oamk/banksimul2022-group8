@@ -5,16 +5,16 @@ const login = require('../models/login_model');
 
 router.post('/', 
   function(request, response) {
-    if(request.body.Kortinnumero && request.body.PIN){
-      const Kortinnumero = request.body.Kortinnumero;
-      const PIN = request.body.PIN;
-        login.checkPassword(Kortinnumero, function(dbError, dbResult) {
+    if(request.body.username && request.body.password){
+      const Kortinnumero = request.body.username;
+      const PIN = request.body.password;
+        login.checkPIN(Kortinnumero, function(dbError, dbResult) {
           if(dbError){
             response.json(dbError);
           }
           else{
             if (dbResult.length > 0) {
-              bcrypt.compare(PIN,dbResult[0].PIN, function(err,compareResult) {
+              bcrypt.compare(PIN,dbResult[0].password, function(err,compareResult) {
                 if(compareResult) {
                   console.log("PIN oikein");
                   response.send(true);
@@ -27,7 +27,7 @@ router.post('/',
               );
             }
             else{
-              console.log("Korttia ei ole olemassa");
+              console.log("käyttäjää ei ole olemassa");
               response.send(false);
             }
           }
@@ -35,7 +35,7 @@ router.post('/',
         );
       }
     else{
-      console.log("Väärä kortinnumero tai väärä PIN");
+      console.log("käyttäjä tai PIN puuttuu");
       response.send(false);
     }
   }

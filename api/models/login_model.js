@@ -1,8 +1,8 @@
 const db = require('../database');
 
 const login={
-  checkPassword: function(username, callback) {
-      return db.query('SELECT PIN FROM kortti WHERE Kortinnumero = ?',[username], callback); 
+  checkPIN: function(Kortinnumero, callback) {
+      return db.query('SELECT PIN FROM kortti WHERE Kortinnumero = ?',[Kortinnumero], callback); 
     }
 };
           
