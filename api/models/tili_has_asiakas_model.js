@@ -10,8 +10,8 @@ const Tili_has_Asiakas={
   },
   add: function(Tili_has_Asiakas, callback) {
     return db.query(
-      'insert into Tili_has_Asiakas (idTili) values(?)',
-      [Tili_has_Asiakas.idOpintojakso],
+      'insert into Tili_has_Asiakas (idAsiakas, idTili) values(?, ?)',
+      [Tili_has_Asiakas.idAsiakas, Tili_has_Asiakas.idTili],
       callback
     );
   },
@@ -21,7 +21,7 @@ const Tili_has_Asiakas={
   update: function(id, Tili_has_Asiakas, callback) {
     return db.query(
       'update Tili_has_Asiakas set idTili=? where idAsiakas=?',
-      [Tili_has_Asiakas.idOpintojakso, id],
+      [Tili_has_Asiakas.idTili, id],
       callback
     );
   }
