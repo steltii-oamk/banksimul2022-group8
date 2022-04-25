@@ -2,21 +2,25 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const login = require('../models/login_model');
+//const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
 
 router.post('/', 
   function(request, response) {
-    if(request.body.username && request.body.password){
-      const Kortinnumero = request.body.username;
-      const PIN = request.body.password;
-        login.checkPIN(Kortinnumero, function(dbError, dbResult) {
+    if(request.body.Kortinnumero && request.body.PIN){
+      const Kortinnumero = request.body.Kortinnumero;
+      const PIN = request.body.PIN;
+
+        login.checkPIN(user, function(dbError, dbResult) {
           if(dbError){
             response.json(dbError);
           }
           else{
             if (dbResult.length > 0) {
-              bcrypt.compare(PIN,dbResult[0].password, function(err,compareResult) {
+              bcrypt.compare(PIN,dbResult[0].PIN, function(err,compareResult) {
                 if(compareResult) {
                   console.log("PIN oikein");
+                  //const token = generateAccessToken({ Kortinnumero: user });
                   response.send(true);
                 }
                 else {
@@ -40,5 +44,10 @@ router.post('/',
     }
   }
 );
+
+/*function generateAccessToken(Kortinnumero) {
+  dotenv.config();
+  return jwt.sign(Kortinnumero, process.env.MY_TOKEN, { expiresIn: '1800s' });
+}*/
 
 module.exports=router;
