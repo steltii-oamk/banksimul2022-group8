@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const login = require('../models/login_model');
-//const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 
 router.post('/', 
@@ -20,7 +20,7 @@ router.post('/',
               bcrypt.compare(PIN,dbResult[0].PIN, function(err,compareResult) {
                 if(compareResult) {
                   console.log("PIN oikein");
-                  //const token = generateAccessToken({ Kortinnumero: user });
+                  const token = generateAccessToken({ Kortinnumero: user });
                   response.send(true);
                 }
                 else {
