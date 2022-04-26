@@ -11,17 +11,19 @@ router.post('/',
       const Kortinnumero = request.body.Kortinnumero;
       const PIN = request.body.PIN;
 
-        login.checkPIN(user, function(dbError, dbResult) {
+        login.checkPIN(Kortinnumero, function(dbError, dbResult) {
           if(dbError){
             response.json(dbError);
           }
           else{
             if (dbResult.length > 0) {
+              console.log(PIN);
+              console.log(dbResult);
               bcrypt.compare(PIN,dbResult[0].PIN, function(err,compareResult) {
-                if(compareResult) {
+                /*if(true){*/if(compareResult) {
                   console.log("PIN oikein");
-                  const token = generateAccessToken({ Kortinnumero: user });
-                  response.send(true);
+                  const token = generateAccessToken({ Kortinnumero: Kortinnumero });
+                  response.send(token);
                 }
                 else {
                     console.log("Väärä PIN");
@@ -45,9 +47,9 @@ router.post('/',
   }
 );
 
-/*function generateAccessToken(Kortinnumero) {
+function generateAccessToken(Kortinnumero) {
   dotenv.config();
-  return jwt.sign(Kortinnumero, process.env.MY_TOKEN, { expiresIn: '1800s' });
-}*/
+  return jwt.sign(Kortinnumero, process.env.MY_TOKEN, { expiresIn: '18000s' });
+}
 
 module.exports=router;
