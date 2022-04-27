@@ -1,14 +1,20 @@
 #include "saldo.h"
 #include "ui_saldo.h"
 
-saldo::saldo(QWidget *parent) :
+Saldo::Saldo(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::saldo)
+    ui(new Ui::Saldo)
 {
     ui->setupUi(this);
 }
 
-saldo::~saldo()
+Saldo::~Saldo()
 {
     delete ui;
 }
+
+void Saldo::on_sClose_clicked()
+{
+    close();
+}
+

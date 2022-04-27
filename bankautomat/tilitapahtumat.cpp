@@ -12,3 +12,9 @@ Tilitapahtumat::~Tilitapahtumat()
 {
     delete ui;
 }
+
+void Tilitapahtumat::on_tClose_clicked()
+{
+    close();
+}
+
