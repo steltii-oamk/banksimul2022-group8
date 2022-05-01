@@ -40,7 +40,7 @@ void MainWindow::on_bTilitapahtumat_clicked()
 
 void MainWindow::on_bUlos_clicked()
 {
-
+    this->close();
 }
 
 
