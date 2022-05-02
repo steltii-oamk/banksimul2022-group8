@@ -5,6 +5,8 @@
 #include <QtNetwork>
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
+
+#include "pincodedll.h"
 #include "nosto.h"
 #include "tilitapahtumat.h"
 #include "saldo.h"
@@ -22,16 +24,21 @@ public:
     ~MainWindow();
 
 private slots:
-    void getBookSlot (QNetworkReply *reply);
+
     void on_bSaldo_clicked();
     void on_bNosto_clicked();
     void on_bUlos_clicked();
     void on_bTilitapahtumat_clicked();
 
-    void on_btnShowBooks_clicked();
+    void loginSlot(QString);
+
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
+
+    PinCodeDLL *pPinCode;
+
     Nosto *pNosto;
     Saldo *pSaldo;
     Tilitapahtumat *pTilitapahtumat;
