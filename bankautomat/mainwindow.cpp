@@ -1,15 +1,19 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <qdebug.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     pPinCode = new PinCodeDLL;
     connect(pPinCode->logindialog, SIGNAL(loginSignal(QString)),
             this,SLOT(loginSlot(QString)));
+
+    serial = new SerialPortDLL(this);
+    connect(serial, SIGNAL(korttiIdSignal(QByteArray)),
+            this, SLOT(korttiIdSlot(QByteArray)));
 
     pNosto = new Nosto;
     pSaldo = new Saldo;
@@ -20,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete serial;
     delete pPinCode;
     delete pNosto;
     delete pSaldo;
@@ -37,6 +42,11 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::loginSlot(QString t)
 {
     qDebug() << "mainwindow vastaanotti " + t;
+}
+
+void MainWindow::korttiIdSlot(QByteArray)
+{
+    //tee jotain vastaanotetulla korttiID:lla
 }
 
 

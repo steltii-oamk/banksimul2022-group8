@@ -1,4 +1,4 @@
-QT += core gui
+QT += core gui serialport
 QT +=network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -38,3 +38,9 @@ else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../PinCodeDLL/build/deb
 
 INCLUDEPATH += $$PWD/../PinCodeDLL
 DEPENDPATH += $$PWD/../PinCodeDLL
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/build-SerialPortDLL-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/release/ -lSerialPortDLL
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/build-SerialPortDLL-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/debug/ -lSerialPortDLL
+
+INCLUDEPATH += $$PWD/SerialPortDLL
+DEPENDPATH += $$PWD/SerialPortDLL

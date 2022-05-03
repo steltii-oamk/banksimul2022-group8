@@ -7,6 +7,7 @@
 #include <QJsonDocument>
 
 #include "pincodedll.h"
+#include "serialportdll.h"
 #include "nosto.h"
 #include "tilitapahtumat.h"
 #include "saldo.h"
@@ -31,6 +32,7 @@ private slots:
     void on_bTilitapahtumat_clicked();
 
     void loginSlot(QString);
+    void korttiIdSlot(QByteArray);
 
     void on_pushButton_clicked();
 
@@ -38,6 +40,7 @@ private:
     Ui::MainWindow *ui;
 
     PinCodeDLL *pPinCode;
+    SerialPortDLL* serial;
 
     Nosto *pNosto;
     Saldo *pSaldo;
