@@ -33,14 +33,16 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../PinCodeDLL/build/release/ -lPinCodeDLL
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../PinCodeDLL/build/debug/ -lPinCodeDLL
 
-INCLUDEPATH += $$PWD/../PinCodeDLL
-DEPENDPATH += $$PWD/../PinCodeDLL
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/build-SerialPortDLL-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/release/ -lSerialPortDLL
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/build-SerialPortDLL-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/debug/ -lSerialPortDLL
 
 INCLUDEPATH += $$PWD/SerialPortDLL
 DEPENDPATH += $$PWD/SerialPortDLL
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../build-PinCodeDLL-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/release/ -lPinCodeDLL
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../build-PinCodeDLL-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/debug/ -lPinCodeDLL
+
+INCLUDEPATH += $$PWD/../PinCodeDLL
+DEPENDPATH += $$PWD/../PinCodeDLL
