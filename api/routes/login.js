@@ -49,7 +49,7 @@ router.post('/',
 
 function generateAccessToken(Kortinnumero) {
   dotenv.config();
-  return jwt.sign(Kortinnumero, process.env.MY_TOKEN, { expiresIn: '18000s' });
+  return jwt.sign(Kortinnumero, process.env.MY_TOKEN, { expiresIn: '1800000s' });
 }
 
 module.exports=router;
