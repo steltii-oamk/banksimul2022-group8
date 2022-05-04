@@ -39,7 +39,7 @@ void RestApiDLL::getTili(QString id)
 
     getManager = new QNetworkAccessManager(this);
     connect(getManager, SIGNAL(finished(QNetworkReply*)),
-            this, SLOT (asiakasGetSlot(QNetworkReply*)));
+            this, SLOT (tiliGetSlot(QNetworkReply*)));
     reply = getManager->get(request);
 }
 
@@ -55,7 +55,7 @@ void RestApiDLL::getKortti(QString id)
 
     getManager = new QNetworkAccessManager(this);
     connect(getManager, SIGNAL(finished(QNetworkReply*)),
-            this, SLOT (asiakasGetSlot(QNetworkReply*)));
+            this, SLOT (korttiGetSlot(QNetworkReply*)));
     reply = getManager->get(request);
 }
 
@@ -71,7 +71,7 @@ void RestApiDLL::getTili_has_Asiakas(QString id)
 
     getManager = new QNetworkAccessManager(this);
     connect(getManager, SIGNAL(finished(QNetworkReply*)),
-            this, SLOT (asiakasGetSlot(QNetworkReply*)));
+            this, SLOT (tili_has_asiakasGetSlot(QNetworkReply*)));
     reply = getManager->get(request);
 }
 
@@ -87,7 +87,7 @@ void RestApiDLL::getTiliTapahtumat(QString id)
 
     getManager = new QNetworkAccessManager(this);
     connect(getManager, SIGNAL(finished(QNetworkReply*)),
-            this, SLOT (asiakasGetSlot(QNetworkReply*)));
+            this, SLOT (tilitapahtumatGetSlot(QNetworkReply*)));
     reply = getManager->get(request);
 }
 
@@ -99,9 +99,11 @@ void RestApiDLL::asiakasGetSlot(QNetworkReply*)
 
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
     QJsonArray json_array = json_doc.array();
+    QString asiakas;
     foreach (const QJsonValue &value, json_array) {
         QJsonObject json_obj = value.toObject();
-        qDebug() << "nimi=" + json_obj["nimi"].toString();
+        asiakas+=QString::number(json_obj["idAsiakas"].toInt())+", "+json_obj["Etunimi"].toString()+", "+json_obj["Sukunimi"].toString()+
+                ", "+json_obj["Osoite"].toString()+", "+json_obj["Puhelinnumero"].toString()+", "+json_obj["idKortti"].toInt()+"\r";
     }
     reply->deleteLater();
     getManager->deleteLater();
@@ -115,9 +117,11 @@ void RestApiDLL::tiliGetSlot(QNetworkReply*)
 
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
     QJsonArray json_array = json_doc.array();
+    QString tili;
     foreach (const QJsonValue &value, json_array) {
         QJsonObject json_obj = value.toObject();
-        qDebug() << "nosto=" + json_obj["nosto"].toString();
+        tili+=QString::number(json_obj["idTili"].toInt())+", "+json_obj["Tilinumero"].toString()+", "+json_obj["Saldo"].toDouble()+
+                ", "+json_obj["Credit"].toDouble()+"\r";
     }
     reply->deleteLater();
     getManager->deleteLater();
@@ -131,9 +135,11 @@ void RestApiDLL::korttiGetSlot(QNetworkReply*)
 
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
     QJsonArray json_array = json_doc.array();
+    QString kortti;
     foreach (const QJsonValue &value, json_array) {
         QJsonObject json_obj = value.toObject();
-        qDebug() << "kortin numero=" + json_obj["kortin numero"].toString();
+        kortti+=QString::number(json_obj["idKortti"].toInt())+", "+json_obj["Kortinnumero"].toString()+", "+json_obj["PIN"].toString()+
+                ", "+json_obj["Voimassaolo"].toString()+", "+json_obj["idTili"].toInt()+"\r";
     }
     reply->deleteLater();
     getManager->deleteLater();
@@ -147,9 +153,10 @@ void RestApiDLL::tili_has_asiakasGetSlot(QNetworkReply*)
 
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
     QJsonArray json_array = json_doc.array();
+    QString tili_has_asiakas;
     foreach (const QJsonValue &value, json_array) {
         QJsonObject json_obj = value.toObject();
-        qDebug() << "tili=" + json_obj["tili"].toString();
+        tili_has_asiakas+=QString::number(json_obj["idTili_has_asiakas"].toInt())+", "+json_obj["idAsiakas"].toInt()+", "+json_obj["idTili"].toInt()+"\r";
     }
     reply->deleteLater();
     getManager->deleteLater();
@@ -163,9 +170,11 @@ void RestApiDLL::tilitapahtumatGetSlot(QNetworkReply*)
 
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
     QJsonArray json_array = json_doc.array();
+    QString tilitapahtumat;
     foreach (const QJsonValue &value, json_array) {
         QJsonObject json_obj = value.toObject();
-        qDebug() << "tilitiapahtumat=" + json_obj["tilitapahtumat"].toString();
+        tilitapahtumat+=QString::number(json_obj["idTilitapahtumat"].toInt())+", "+json_obj["Tilinumero"].toString()+", "+json_obj["Kortinnumero"].toString()+
+                ", "+json_obj["PVMKLO"].toString()+", "+json_obj["Tapahtumat"].toString()+", "+json_obj["Summa"].toDouble()+", "+json_obj["idTili"].toInt()+"\r";
     }
     reply->deleteLater();
     getManager->deleteLater();
