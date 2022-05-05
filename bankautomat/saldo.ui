@@ -30,6 +30,13 @@
     <enum>QLayout::SetMaximumSize</enum>
    </property>
    <item>
+    <widget class="QTextEdit" name="textSaldo">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QLineEdit" name="sTili1">
@@ -71,6 +78,24 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
+      <widget class="QPushButton" name="sSaldo">
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Saldon haku</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="sClose">
        <property name="maximumSize">
         <size>
@@ -81,6 +106,7 @@
        <property name="font">
         <font>
          <pointsize>16</pointsize>
+         <weight>75</weight>
          <bold>true</bold>
          <underline>true</underline>
         </font>

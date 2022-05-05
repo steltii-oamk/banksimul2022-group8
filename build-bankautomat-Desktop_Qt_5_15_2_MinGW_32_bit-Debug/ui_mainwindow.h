@@ -17,6 +17,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -29,8 +30,9 @@ public:
     QVBoxLayout *verticalLayout_3;
     QFormLayout *formLayout;
     QVBoxLayout *verticalLayout;
-    QPushButton *pushButton;
+    QPushButton *bSisaan;
     QPushButton *bSaldo;
+    QTextEdit *textSaldoo;
     QPushButton *bTilitapahtumat;
     QPushButton *bNosto;
     QPushButton *bUlos;
@@ -54,14 +56,14 @@ public:
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(50, -1, 50, -1);
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setMinimumSize(QSize(150, 75));
+        bSisaan = new QPushButton(centralwidget);
+        bSisaan->setObjectName(QString::fromUtf8("bSisaan"));
+        bSisaan->setMinimumSize(QSize(150, 75));
         QFont font;
         font.setPointSize(16);
-        pushButton->setFont(font);
+        bSisaan->setFont(font);
 
-        verticalLayout->addWidget(pushButton);
+        verticalLayout->addWidget(bSisaan);
 
         bSaldo = new QPushButton(centralwidget);
         bSaldo->setObjectName(QString::fromUtf8("bSaldo"));
@@ -70,6 +72,13 @@ public:
         bSaldo->setFont(font);
 
         verticalLayout->addWidget(bSaldo);
+
+        textSaldoo = new QTextEdit(centralwidget);
+        textSaldoo->setObjectName(QString::fromUtf8("textSaldoo"));
+        textSaldoo->setMinimumSize(QSize(150, 75));
+        textSaldoo->setReadOnly(true);
+
+        verticalLayout->addWidget(textSaldoo);
 
         bTilitapahtumat = new QPushButton(centralwidget);
         bTilitapahtumat->setObjectName(QString::fromUtf8("bTilitapahtumat"));
@@ -101,6 +110,7 @@ public:
         QFont font1;
         font1.setPointSize(16);
         font1.setBold(true);
+        font1.setWeight(75);
         label->setFont(font1);
         label->setTextFormat(Qt::PlainText);
         label->setScaledContents(false);
@@ -117,7 +127,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 700, 21));
+        menubar->setGeometry(QRect(0, 0, 700, 25));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -131,7 +141,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "Kirjaudu sis\303\244\303\244n", nullptr));
+        bSisaan->setText(QCoreApplication::translate("MainWindow", "Kirjaudu sis\303\244\303\244n", nullptr));
         bSaldo->setText(QCoreApplication::translate("MainWindow", "Saldo", nullptr));
         bTilitapahtumat->setText(QCoreApplication::translate("MainWindow", "Tilitapahtumat", nullptr));
         bNosto->setText(QCoreApplication::translate("MainWindow", "Nosto", nullptr));

@@ -1,6 +1,9 @@
 #include "restapidll.h"
 #include <qdebug.h>
 
+//QByteArray token1 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJLb3J0aW5udW1lcm8iOiIxMjM0NTY3OCIsImlhdCI6MTY1MTY2NDc5MiwiZXhwIjoxNjUzNDY0NzkyfQ.3zmIvXRU4tHOfQ7YW_8Ytc8VmZ2bmkP95X2gK2j9r9s";
+
+
 RestApiDLL::RestApiDLL(QObject *parent) :
     QObject(parent)
 {
@@ -18,7 +21,7 @@ void RestApiDLL::getAsiakas(QString id)
 
     QNetworkRequest request((site_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    QByteArray token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJLb3J0aW5udW1lcm8iOiI0OTIwIDEwOTAgNTU1NSA0NDQ0IiwiaWF0IjoxNjUwOTc0MjM2LCJleHAiOjE2NTA5OTIyMzZ9.8FhfK1HjaJNbUU_GSndbsA2GZ1G7QFWiLa_JoK8r34g";
+    QByteArray token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJLb3J0aW5udW1lcm8iOiIxMjM0NTY3OCIsImlhdCI6MTY1MTY2NjIxOCwiZXhwIjoxNjUzNDY2MjE4fQ.ly07sMq-FKWsIhT8_MyTD_CuIkWo2VKyn2z17Y3mElI";
     request.setRawHeader(QByteArray("Authorization"),(token));
 
     getManager = new QNetworkAccessManager(this);
@@ -34,7 +37,7 @@ void RestApiDLL::getTili(QString id)
 
     QNetworkRequest request((site_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    QByteArray token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJLb3J0aW5udW1lcm8iOiI0OTIwIDEwOTAgNTU1NSA0NDQ0IiwiaWF0IjoxNjUwOTc0MjM2LCJleHAiOjE2NTA5OTIyMzZ9.8FhfK1HjaJNbUU_GSndbsA2GZ1G7QFWiLa_JoK8r34g";
+    QByteArray token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJLb3J0aW5udW1lcm8iOiIxMjM0NTY3OCIsImlhdCI6MTY1MTY2NjIxOCwiZXhwIjoxNjUzNDY2MjE4fQ.ly07sMq-FKWsIhT8_MyTD_CuIkWo2VKyn2z17Y3mElI";
     request.setRawHeader(QByteArray("Authorization"),(token));
 
     getManager = new QNetworkAccessManager(this);
@@ -50,7 +53,7 @@ void RestApiDLL::getKortti(QString id)
 
     QNetworkRequest request((site_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    QByteArray token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJLb3J0aW5udW1lcm8iOiI0OTIwIDEwOTAgNTU1NSA0NDQ0IiwiaWF0IjoxNjUwOTc0MjM2LCJleHAiOjE2NTA5OTIyMzZ9.8FhfK1HjaJNbUU_GSndbsA2GZ1G7QFWiLa_JoK8r34g";
+    QByteArray token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJLb3J0aW5udW1lcm8iOiIxMjM0NTY3OCIsImlhdCI6MTY1MTY2NjIxOCwiZXhwIjoxNjUzNDY2MjE4fQ.ly07sMq-FKWsIhT8_MyTD_CuIkWo2VKyn2z17Y3mElI";
     request.setRawHeader(QByteArray("Authorization"),(token));
 
     getManager = new QNetworkAccessManager(this);
@@ -66,7 +69,7 @@ void RestApiDLL::getTili_has_Asiakas(QString id)
 
     QNetworkRequest request((site_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    QByteArray token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJLb3J0aW5udW1lcm8iOiI0OTIwIDEwOTAgNTU1NSA0NDQ0IiwiaWF0IjoxNjUwOTc0MjM2LCJleHAiOjE2NTA5OTIyMzZ9.8FhfK1HjaJNbUU_GSndbsA2GZ1G7QFWiLa_JoK8r34g";
+    QByteArray token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJLb3J0aW5udW1lcm8iOiIxMjM0NTY3OCIsImlhdCI6MTY1MTY2NDc5MiwiZXhwIjoxNjUzNDY0NzkyfQ.3zmIvXRU4tHOfQ7YW_8Ytc8VmZ2bmkP95X2gK2j9r9s";
     request.setRawHeader(QByteArray("Authorization"),(token));
 
     getManager = new QNetworkAccessManager(this);
@@ -82,7 +85,7 @@ void RestApiDLL::getTiliTapahtumat(QString id)
 
     QNetworkRequest request((site_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    QByteArray token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJLb3J0aW5udW1lcm8iOiI0OTIwIDEwOTAgNTU1NSA0NDQ0IiwiaWF0IjoxNjUwOTc0MjM2LCJleHAiOjE2NTA5OTIyMzZ9.8FhfK1HjaJNbUU_GSndbsA2GZ1G7QFWiLa_JoK8r34g";
+    QByteArray token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJLb3J0aW5udW1lcm8iOiIxMjM0NTY3OCIsImlhdCI6MTY1MTY2NDc5MiwiZXhwIjoxNjUzNDY0NzkyfQ.3zmIvXRU4tHOfQ7YW_8Ytc8VmZ2bmkP95X2gK2j9r9s";
     request.setRawHeader(QByteArray("Authorization"),(token));
 
     getManager = new QNetworkAccessManager(this);

@@ -6,6 +6,7 @@
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
 
+//#include "restapidll.h"
 #include "pincodedll.h"
 #include "serialportdll.h"
 #include "nosto.h"
@@ -31,16 +32,24 @@ private slots:
     void on_bUlos_clicked();
     void on_bTilitapahtumat_clicked();
 
-    void loginSlot(QString);
+    void loginPostSlot(QNetworkReply *reply);
+
     void korttiIdSlot(QByteArray);
 
-    void on_pushButton_clicked();
+    void tiliGetSlot (QNetworkReply *reply);
+
+    void on_bSisaan_clicked();
+
+    void on_textSaldoo_textChanged();
+
+
 
 private:
     Ui::MainWindow *ui;
 
     PinCodeDLL *pPinCode;
-    SerialPortDLL* serial;
+    SerialPortDLL *serial;
+    //RestApiDLL *pRestApiDLL;
 
     Nosto *pNosto;
     Saldo *pSaldo;
@@ -49,5 +58,6 @@ private:
     QNetworkAccessManager *getManager;
     QNetworkReply *reply;
     QByteArray response_data;
+    QByteArray webtoken;
 };
 #endif // MAINWINDOW_H

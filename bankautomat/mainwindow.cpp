@@ -7,9 +7,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     pPinCode = new PinCodeDLL;
     connect(pPinCode->logindialog, SIGNAL(loginSignal(QString)),
-            this,SLOT(loginSlot(QString)));
+            this, SLOT(loginPostSlot(QString)));
 
     serial = new SerialPortDLL(this);
     connect(serial, SIGNAL(korttiIdSignal(QByteArray)),
@@ -31,28 +32,71 @@ MainWindow::~MainWindow()
     delete pTilitapahtumat;
 }
 
-void MainWindow::on_pushButton_clicked()
+
+void MainWindow::on_bSisaan_clicked()
 {
-    qDebug() << "Nappia painettu";
-    pPinCode->tulostaTerveisia();
-    pPinCode->login();
+    QString site_url="http://localhost:3000/login";
+
+    QNetworkRequest request((site_url));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    QJsonObject jsonObj;
+    jsonObj.insert("Kortinnumero","12345678");
+    jsonObj.insert("PIN","1111");
+    getManager = new QNetworkAccessManager(this);
+
+    connect(getManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(loginPostSlot(QNetworkReply*)));
+
+    reply = getManager->post(request, QJsonDocument(jsonObj).toJson());
 }
 
 
-void MainWindow::loginSlot(QString t)
+void MainWindow::loginPostSlot(QNetworkReply *reply)
 {
-    qDebug() << "mainwindow vastaanotti " + t;
-}
-
-void MainWindow::korttiIdSlot(QByteArray)
-{
-    //tee jotain vastaanotetulla korttiID:lla
+    response_data=reply->readAll();
+    qDebug()<<"DATA : "+response_data;
+    webtoken = response_data;
 }
 
 
 void MainWindow::on_bSaldo_clicked()
 {
-    pSaldo->exec();
+    QString site_url="http://localhost:3000/tili";
+    QNetworkRequest request((site_url));
+    //WEBTOKEN ALKU
+    QByteArray myToken="Bearer " + webtoken;
+    request.setRawHeader(QByteArray("Authorization"),(myToken));
+    //WEBTOKEN LOPPU
+    getManager = new QNetworkAccessManager(this);
+
+    connect(getManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(tiliGetSlot(QNetworkReply*)));
+
+    reply = getManager->get(request);
+
+}
+
+
+void MainWindow::tiliGetSlot (QNetworkReply *reply)
+{
+ response_data=reply->readAll();
+ qDebug()<<"DATA : "+response_data;
+ QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+ QJsonArray json_array = json_doc.array();
+ QString tili;
+ foreach (const QJsonValue &value, json_array) {
+     QJsonObject json_obj = value.toObject();
+     tili+=QString::number(json_obj["Saldo"].toDouble());
+}
+
+ ui->textSaldoo->setText(tili);
+
+ reply->deleteLater();
+ getManager->deleteLater();
+}
+
+
+void MainWindow::korttiIdSlot(QByteArray)
+{
+    //tee jotain vastaanotetulla korttiID:lla
 }
 
 
@@ -72,3 +116,9 @@ void MainWindow::on_bUlos_clicked()
 {
     close();
 }
+
+void MainWindow::on_textSaldoo_textChanged()
+{
+
+}
+

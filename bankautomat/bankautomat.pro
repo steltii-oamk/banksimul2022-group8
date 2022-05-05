@@ -46,3 +46,4 @@ else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../build-PinCodeDLL-Des
 
 INCLUDEPATH += $$PWD/../PinCodeDLL
 DEPENDPATH += $$PWD/../PinCodeDLL
+

@@ -21,6 +21,7 @@ public:
     void getTiliTapahtumat(QString id);
 
 
+
 private slots:
     void asiakasGetSlot(QNetworkReply*);
     void tiliGetSlot(QNetworkReply*);

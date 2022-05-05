@@ -15,6 +15,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
@@ -23,6 +24,7 @@ class Ui_Saldo
 {
 public:
     QVBoxLayout *verticalLayout_2;
+    QTextEdit *textSaldo;
     QVBoxLayout *verticalLayout;
     QLineEdit *sTili1;
     QLineEdit *sTili2;
@@ -30,6 +32,7 @@ public:
     QLineEdit *sTili4;
     QLineEdit *sTili5;
     QHBoxLayout *horizontalLayout;
+    QPushButton *sSaldo;
     QPushButton *sClose;
 
     void setupUi(QDialog *Saldo)
@@ -42,6 +45,12 @@ public:
         verticalLayout_2 = new QVBoxLayout(Saldo);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout_2->setSizeConstraint(QLayout::SetMaximumSize);
+        textSaldo = new QTextEdit(Saldo);
+        textSaldo->setObjectName(QString::fromUtf8("textSaldo"));
+        textSaldo->setReadOnly(true);
+
+        verticalLayout_2->addWidget(textSaldo);
+
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         sTili1 = new QLineEdit(Saldo);
@@ -79,14 +88,24 @@ public:
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        sSaldo = new QPushButton(Saldo);
+        sSaldo->setObjectName(QString::fromUtf8("sSaldo"));
+        sSaldo->setMaximumSize(QSize(200, 16777215));
+        QFont font;
+        font.setPointSize(16);
+        sSaldo->setFont(font);
+
+        horizontalLayout->addWidget(sSaldo);
+
         sClose = new QPushButton(Saldo);
         sClose->setObjectName(QString::fromUtf8("sClose"));
         sClose->setMaximumSize(QSize(200, 16777215));
-        QFont font;
-        font.setPointSize(16);
-        font.setBold(true);
-        font.setUnderline(true);
-        sClose->setFont(font);
+        QFont font1;
+        font1.setPointSize(16);
+        font1.setBold(true);
+        font1.setUnderline(true);
+        font1.setWeight(75);
+        sClose->setFont(font1);
 
         horizontalLayout->addWidget(sClose);
 
@@ -102,6 +121,7 @@ public:
     void retranslateUi(QDialog *Saldo)
     {
         Saldo->setWindowTitle(QCoreApplication::translate("Saldo", "Dialog", nullptr));
+        sSaldo->setText(QCoreApplication::translate("Saldo", "Saldon haku", nullptr));
         sClose->setText(QCoreApplication::translate("Saldo", "P\303\244\303\244valikkoon", nullptr));
     } // retranslateUi
 
