@@ -79,8 +79,8 @@ void Saldo::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_sClose_clicked(); break;
-        //case 1: _t->on_sSaldo_clicked(); break;
-        //case 2: _t->tiliGetSlot((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
+        case 1: _t->on_sSaldo_clicked(); break;
+        case 2: _t->tiliGetSlot((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {

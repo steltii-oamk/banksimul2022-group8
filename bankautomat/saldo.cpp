@@ -54,3 +54,14 @@ void Saldo::on_sClose_clicked()
 {
     close();
 }
+
+void Saldo::on_sSaldo_clicked()
+{
+
+}
+
+void Saldo::tiliGetSlot(QNetworkReply *reply)
+{
+
+}
+

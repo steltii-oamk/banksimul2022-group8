@@ -1,12 +1,14 @@
 #ifndef LOGINDIALOG_H
 #define LOGINDIALOG_H
 
+#include <QtNetwork>
+#include <QNetworkAccessManager>
+#include <QJsonDocument>
+
 #include <QDialog>
 #include <QDebug>
 
-namespace Ui {
-class loginDialog;
-}
+namespace Ui {class loginDialog; }
 
 class loginDialog : public QDialog
 {
@@ -24,6 +26,7 @@ private slots:
 
 private:
     Ui::loginDialog *ui;
+
 };
 
 #endif // LOGINDIALOG_H

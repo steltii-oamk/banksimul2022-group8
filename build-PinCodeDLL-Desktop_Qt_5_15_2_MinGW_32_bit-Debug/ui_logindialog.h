@@ -14,28 +14,44 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_loginDialog
 {
 public:
-    QDialogButtonBox *buttonBox;
+    QVBoxLayout *verticalLayout_2;
+    QVBoxLayout *verticalLayout;
     QLineEdit *lineEdit;
+    QDialogButtonBox *buttonBox;
 
     void setupUi(QDialog *loginDialog)
     {
         if (loginDialog->objectName().isEmpty())
             loginDialog->setObjectName(QString::fromUtf8("loginDialog"));
-        loginDialog->resize(460, 165);
-        buttonBox = new QDialogButtonBox(loginDialog);
-        buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
-        buttonBox->setGeometry(QRect(220, 110, 181, 21));
-        buttonBox->setOrientation(Qt::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        loginDialog->resize(250, 150);
+        loginDialog->setMinimumSize(QSize(250, 150));
+        loginDialog->setMaximumSize(QSize(250, 150));
+        verticalLayout_2 = new QVBoxLayout(loginDialog);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         lineEdit = new QLineEdit(loginDialog);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setGeometry(QRect(270, 60, 113, 24));
+
+        verticalLayout->addWidget(lineEdit);
+
+        buttonBox = new QDialogButtonBox(loginDialog);
+        buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
+        buttonBox->setOrientation(Qt::Horizontal);
+        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+
+        verticalLayout->addWidget(buttonBox);
+
+
+        verticalLayout_2->addLayout(verticalLayout);
+
 
         retranslateUi(loginDialog);
         QObject::connect(buttonBox, SIGNAL(accepted()), loginDialog, SLOT(accept()));

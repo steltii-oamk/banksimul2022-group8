@@ -1,4 +1,5 @@
 QT += widgets
+QT +=network
 
 TEMPLATE = lib
 DEFINES += PINCODEDLL_LIBRARY

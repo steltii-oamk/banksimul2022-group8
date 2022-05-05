@@ -9,12 +9,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     pPinCode = new PinCodeDLL;
-    connect(pPinCode->logindialog, SIGNAL(loginSignal(QString)),
-            this, SLOT(loginPostSlot(QString)));
+    connect(pPinCode, SIGNAL(senttoexe(QString)),
+            this, SLOT(getnumber(QString)));
 
     serial = new SerialPortDLL(this);
     connect(serial, SIGNAL(korttiIdSignal(QByteArray)),
             this, SLOT(korttiIdSlot(QByteArray)));
+
+    pRestApiDLL = new RestApiDLL(this);
+
 
     pNosto = new Nosto;
     pSaldo = new Saldo;
@@ -25,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete pRestApiDLL;
     delete serial;
     delete pPinCode;
     delete pNosto;
@@ -32,9 +36,22 @@ MainWindow::~MainWindow()
     delete pTilitapahtumat;
 }
 
+void MainWindow::getnumber(QString s)
+{
+    qDebug() << "Tama numero tuli nyt pincodedll:sta" + s;
+}
+
 
 void MainWindow::on_bSisaan_clicked()
 {
+    pPinCode->login();
+
+    pRestApiDLL = new RestApiDLL(this);
+    connect(pRestApiDLL, SIGNAL(LoginSignal(QNetworkReply*)),
+            this, SLOT(loginPostSlot(QNetworkReply*)));
+
+
+
     QString site_url="http://localhost:3000/login";
 
     QNetworkRequest request((site_url));
@@ -47,6 +64,7 @@ void MainWindow::on_bSisaan_clicked()
     connect(getManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(loginPostSlot(QNetworkReply*)));
 
     reply = getManager->post(request, QJsonDocument(jsonObj).toJson());
+
 }
 
 

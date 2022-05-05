@@ -16,10 +16,10 @@ CXX           = g++
 DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DMINGW_HAS_SECURE_API=1 -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -fno-keep-inline-dllexport -O2 -Wall -Wextra -Wextra $(DEFINES)
 CXXFLAGS      = -fno-keep-inline-dllexport -O2 -std=gnu++11 -Wall -Wextra -Wextra -fexceptions -mthreads $(DEFINES)
-INCPATH       = -I..\bankautomat -I. -I..\bankautomat\SerialPortDLL -I..\PinCodeDLL -IC:\Qt\5.15.2\mingw81_32\include -IC:\Qt\5.15.2\mingw81_32\include\QtWidgets -IC:\Qt\5.15.2\mingw81_32\include\QtGui -IC:\Qt\5.15.2\mingw81_32\include\QtANGLE -IC:\Qt\5.15.2\mingw81_32\include\QtSerialPort -IC:\Qt\5.15.2\mingw81_32\include\QtNetwork -IC:\Qt\5.15.2\mingw81_32\include\QtCore -Irelease -I. -IC:\Qt\5.15.2\mingw81_32\mkspecs\win32-g++ 
+INCPATH       = -I..\bankautomat -I. -I..\bankautomat\SerialPortDLL -I..\PinCodeDLL -I..\bankautomat\restApiDLL -IC:\Qt\5.15.2\mingw81_32\include -IC:\Qt\5.15.2\mingw81_32\include\QtWidgets -IC:\Qt\5.15.2\mingw81_32\include\QtGui -IC:\Qt\5.15.2\mingw81_32\include\QtANGLE -IC:\Qt\5.15.2\mingw81_32\include\QtSerialPort -IC:\Qt\5.15.2\mingw81_32\include\QtNetwork -IC:\Qt\5.15.2\mingw81_32\include\QtCore -Irelease -I. -IC:\Qt\5.15.2\mingw81_32\mkspecs\win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        -LC:\Users\ogste\Desktop\banksimul\group8\bankautomat\build-SerialPortDLL-Desktop_Qt_5_15_2_MinGW_32_bit-Debug\release -lSerialPortDLL -LC:\Users\ogste\Desktop\banksimul\group8\build-PinCodeDLL-Desktop_Qt_5_15_2_MinGW_32_bit-Debug\release -lPinCodeDLL C:\Qt\5.15.2\mingw81_32\lib\libQt5Widgets.a C:\Qt\5.15.2\mingw81_32\lib\libQt5Gui.a C:\Qt\5.15.2\mingw81_32\lib\libQt5SerialPort.a C:\Qt\5.15.2\mingw81_32\lib\libQt5Network.a C:\Qt\5.15.2\mingw81_32\lib\libQt5Core.a  -lmingw32 C:\Qt\5.15.2\mingw81_32\lib\libqtmain.a -LC:\openssl\lib -LC:\Utils\my_sql\mysql-5.7.25-win32\lib -LC:\Utils\postgresql\pgsql\lib -lshell32 
+LIBS        =        -LC:\Users\ogste\Desktop\banksimul\group8\bankautomat\build-SerialPortDLL-Desktop_Qt_5_15_2_MinGW_32_bit-Debug\release -lSerialPortDLL -LC:\Users\ogste\Desktop\banksimul\group8\build-PinCodeDLL-Desktop_Qt_5_15_2_MinGW_32_bit-Debug\release -lPinCodeDLL -LC:\Users\ogste\Desktop\banksimul\group8\bankautomat\build-restApiDLL-Desktop_Qt_5_15_2_MinGW_32_bit-Debug\debug -lrestApiDLL C:\Qt\5.15.2\mingw81_32\lib\libQt5Widgets.a C:\Qt\5.15.2\mingw81_32\lib\libQt5Gui.a C:\Qt\5.15.2\mingw81_32\lib\libQt5SerialPort.a C:\Qt\5.15.2\mingw81_32\lib\libQt5Network.a C:\Qt\5.15.2\mingw81_32\lib\libQt5Core.a  -lmingw32 C:\Qt\5.15.2\mingw81_32\lib\libqtmain.a -LC:\openssl\lib -LC:\Utils\my_sql\mysql-5.7.25-win32\lib -LC:\Utils\postgresql\pgsql\lib -lshell32 
 QMAKE         = C:\Qt\5.15.2\mingw81_32\bin\qmake.exe
 DEL_FILE      = del
 CHK_DIR_EXISTS= if not exist
@@ -424,6 +424,8 @@ release/moc_mainwindow.cpp: ../bankautomat/mainwindow.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtNetwork/qudpsocket.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtNetwork/qtnetworkversion.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtCore/QJsonDocument \
+		../bankautomat/restApiDLL/restapidll.h \
+		../bankautomat/restApiDLL/restApiDLL_global.h \
 		../PinCodeDLL/pincodedll.h \
 		../PinCodeDLL/PinCodeDLL_global.h \
 		../PinCodeDLL/logindialog.h \
@@ -440,7 +442,7 @@ release/moc_mainwindow.cpp: ../bankautomat/mainwindow.h \
 		../bankautomat/saldo.h \
 		release/moc_predefs.h \
 		C:/Qt/5.15.2/mingw81_32/bin/moc.exe
-	C:\Qt\5.15.2\mingw81_32\bin\moc.exe $(DEFINES) --include C:/Users/ogste/Desktop/banksimul/group8/build-bankautomat-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/release/moc_predefs.h -IC:/Qt/5.15.2/mingw81_32/mkspecs/win32-g++ -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat/SerialPortDLL -IC:/Users/ogste/Desktop/banksimul/group8/PinCodeDLL -IC:/Qt/5.15.2/mingw81_32/include -IC:/Qt/5.15.2/mingw81_32/include/QtWidgets -IC:/Qt/5.15.2/mingw81_32/include/QtGui -IC:/Qt/5.15.2/mingw81_32/include/QtANGLE -IC:/Qt/5.15.2/mingw81_32/include/QtSerialPort -IC:/Qt/5.15.2/mingw81_32/include/QtNetwork -IC:/Qt/5.15.2/mingw81_32/include/QtCore -I. -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_32/i686-w64-mingw32/include ..\bankautomat\mainwindow.h -o release\moc_mainwindow.cpp
+	C:\Qt\5.15.2\mingw81_32\bin\moc.exe $(DEFINES) --include C:/Users/ogste/Desktop/banksimul/group8/build-bankautomat-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/release/moc_predefs.h -IC:/Qt/5.15.2/mingw81_32/mkspecs/win32-g++ -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat/SerialPortDLL -IC:/Users/ogste/Desktop/banksimul/group8/PinCodeDLL -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat/restApiDLL -IC:/Qt/5.15.2/mingw81_32/include -IC:/Qt/5.15.2/mingw81_32/include/QtWidgets -IC:/Qt/5.15.2/mingw81_32/include/QtGui -IC:/Qt/5.15.2/mingw81_32/include/QtANGLE -IC:/Qt/5.15.2/mingw81_32/include/QtSerialPort -IC:/Qt/5.15.2/mingw81_32/include/QtNetwork -IC:/Qt/5.15.2/mingw81_32/include/QtCore -I. -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_32/i686-w64-mingw32/include ..\bankautomat\mainwindow.h -o release\moc_mainwindow.cpp
 
 release/moc_nosto.cpp: ../bankautomat/nosto.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtWidgets/QDialog \
@@ -549,7 +551,7 @@ release/moc_nosto.cpp: ../bankautomat/nosto.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtGui/qtouchdevice.h \
 		release/moc_predefs.h \
 		C:/Qt/5.15.2/mingw81_32/bin/moc.exe
-	C:\Qt\5.15.2\mingw81_32\bin\moc.exe $(DEFINES) --include C:/Users/ogste/Desktop/banksimul/group8/build-bankautomat-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/release/moc_predefs.h -IC:/Qt/5.15.2/mingw81_32/mkspecs/win32-g++ -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat/SerialPortDLL -IC:/Users/ogste/Desktop/banksimul/group8/PinCodeDLL -IC:/Qt/5.15.2/mingw81_32/include -IC:/Qt/5.15.2/mingw81_32/include/QtWidgets -IC:/Qt/5.15.2/mingw81_32/include/QtGui -IC:/Qt/5.15.2/mingw81_32/include/QtANGLE -IC:/Qt/5.15.2/mingw81_32/include/QtSerialPort -IC:/Qt/5.15.2/mingw81_32/include/QtNetwork -IC:/Qt/5.15.2/mingw81_32/include/QtCore -I. -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_32/i686-w64-mingw32/include ..\bankautomat\nosto.h -o release\moc_nosto.cpp
+	C:\Qt\5.15.2\mingw81_32\bin\moc.exe $(DEFINES) --include C:/Users/ogste/Desktop/banksimul/group8/build-bankautomat-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/release/moc_predefs.h -IC:/Qt/5.15.2/mingw81_32/mkspecs/win32-g++ -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat/SerialPortDLL -IC:/Users/ogste/Desktop/banksimul/group8/PinCodeDLL -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat/restApiDLL -IC:/Qt/5.15.2/mingw81_32/include -IC:/Qt/5.15.2/mingw81_32/include/QtWidgets -IC:/Qt/5.15.2/mingw81_32/include/QtGui -IC:/Qt/5.15.2/mingw81_32/include/QtANGLE -IC:/Qt/5.15.2/mingw81_32/include/QtSerialPort -IC:/Qt/5.15.2/mingw81_32/include/QtNetwork -IC:/Qt/5.15.2/mingw81_32/include/QtCore -I. -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_32/i686-w64-mingw32/include ..\bankautomat\nosto.h -o release\moc_nosto.cpp
 
 release/moc_saldo.cpp: ../bankautomat/saldo.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtNetwork/QtNetwork \
@@ -849,7 +851,7 @@ release/moc_saldo.cpp: ../bankautomat/saldo.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtGui/qtouchdevice.h \
 		release/moc_predefs.h \
 		C:/Qt/5.15.2/mingw81_32/bin/moc.exe
-	C:\Qt\5.15.2\mingw81_32\bin\moc.exe $(DEFINES) --include C:/Users/ogste/Desktop/banksimul/group8/build-bankautomat-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/release/moc_predefs.h -IC:/Qt/5.15.2/mingw81_32/mkspecs/win32-g++ -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat/SerialPortDLL -IC:/Users/ogste/Desktop/banksimul/group8/PinCodeDLL -IC:/Qt/5.15.2/mingw81_32/include -IC:/Qt/5.15.2/mingw81_32/include/QtWidgets -IC:/Qt/5.15.2/mingw81_32/include/QtGui -IC:/Qt/5.15.2/mingw81_32/include/QtANGLE -IC:/Qt/5.15.2/mingw81_32/include/QtSerialPort -IC:/Qt/5.15.2/mingw81_32/include/QtNetwork -IC:/Qt/5.15.2/mingw81_32/include/QtCore -I. -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_32/i686-w64-mingw32/include ..\bankautomat\saldo.h -o release\moc_saldo.cpp
+	C:\Qt\5.15.2\mingw81_32\bin\moc.exe $(DEFINES) --include C:/Users/ogste/Desktop/banksimul/group8/build-bankautomat-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/release/moc_predefs.h -IC:/Qt/5.15.2/mingw81_32/mkspecs/win32-g++ -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat/SerialPortDLL -IC:/Users/ogste/Desktop/banksimul/group8/PinCodeDLL -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat/restApiDLL -IC:/Qt/5.15.2/mingw81_32/include -IC:/Qt/5.15.2/mingw81_32/include/QtWidgets -IC:/Qt/5.15.2/mingw81_32/include/QtGui -IC:/Qt/5.15.2/mingw81_32/include/QtANGLE -IC:/Qt/5.15.2/mingw81_32/include/QtSerialPort -IC:/Qt/5.15.2/mingw81_32/include/QtNetwork -IC:/Qt/5.15.2/mingw81_32/include/QtCore -I. -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_32/i686-w64-mingw32/include ..\bankautomat\saldo.h -o release\moc_saldo.cpp
 
 release/moc_tilitapahtumat.cpp: ../bankautomat/tilitapahtumat.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtWidgets/QDialog \
@@ -958,7 +960,7 @@ release/moc_tilitapahtumat.cpp: ../bankautomat/tilitapahtumat.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtGui/qtouchdevice.h \
 		release/moc_predefs.h \
 		C:/Qt/5.15.2/mingw81_32/bin/moc.exe
-	C:\Qt\5.15.2\mingw81_32\bin\moc.exe $(DEFINES) --include C:/Users/ogste/Desktop/banksimul/group8/build-bankautomat-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/release/moc_predefs.h -IC:/Qt/5.15.2/mingw81_32/mkspecs/win32-g++ -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat/SerialPortDLL -IC:/Users/ogste/Desktop/banksimul/group8/PinCodeDLL -IC:/Qt/5.15.2/mingw81_32/include -IC:/Qt/5.15.2/mingw81_32/include/QtWidgets -IC:/Qt/5.15.2/mingw81_32/include/QtGui -IC:/Qt/5.15.2/mingw81_32/include/QtANGLE -IC:/Qt/5.15.2/mingw81_32/include/QtSerialPort -IC:/Qt/5.15.2/mingw81_32/include/QtNetwork -IC:/Qt/5.15.2/mingw81_32/include/QtCore -I. -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_32/i686-w64-mingw32/include ..\bankautomat\tilitapahtumat.h -o release\moc_tilitapahtumat.cpp
+	C:\Qt\5.15.2\mingw81_32\bin\moc.exe $(DEFINES) --include C:/Users/ogste/Desktop/banksimul/group8/build-bankautomat-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/release/moc_predefs.h -IC:/Qt/5.15.2/mingw81_32/mkspecs/win32-g++ -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat/SerialPortDLL -IC:/Users/ogste/Desktop/banksimul/group8/PinCodeDLL -IC:/Users/ogste/Desktop/banksimul/group8/bankautomat/restApiDLL -IC:/Qt/5.15.2/mingw81_32/include -IC:/Qt/5.15.2/mingw81_32/include/QtWidgets -IC:/Qt/5.15.2/mingw81_32/include/QtGui -IC:/Qt/5.15.2/mingw81_32/include/QtANGLE -IC:/Qt/5.15.2/mingw81_32/include/QtSerialPort -IC:/Qt/5.15.2/mingw81_32/include/QtNetwork -IC:/Qt/5.15.2/mingw81_32/include/QtCore -I. -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_32/i686-w64-mingw32/include ..\bankautomat\tilitapahtumat.h -o release\moc_tilitapahtumat.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1293,6 +1295,8 @@ release/main.o: ../bankautomat/main.cpp ../bankautomat/mainwindow.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtNetwork/qudpsocket.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtNetwork/qtnetworkversion.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtCore/QJsonDocument \
+		../bankautomat/restApiDLL/restapidll.h \
+		../bankautomat/restApiDLL/restApiDLL_global.h \
 		../PinCodeDLL/pincodedll.h \
 		../PinCodeDLL/PinCodeDLL_global.h \
 		../PinCodeDLL/logindialog.h \
@@ -1612,6 +1616,8 @@ release/mainwindow.o: ../bankautomat/mainwindow.cpp ../bankautomat/mainwindow.h 
 		C:/Qt/5.15.2/mingw81_32/include/QtNetwork/qudpsocket.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtNetwork/qtnetworkversion.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtCore/QJsonDocument \
+		../bankautomat/restApiDLL/restapidll.h \
+		../bankautomat/restApiDLL/restApiDLL_global.h \
 		../PinCodeDLL/pincodedll.h \
 		../PinCodeDLL/PinCodeDLL_global.h \
 		../PinCodeDLL/logindialog.h \
@@ -2117,7 +2123,9 @@ release/saldo.o: ../bankautomat/saldo.cpp ../bankautomat/saldo.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtWidgets/qtextedit.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtWidgets/qabstractscrollarea.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtGui/qtextdocument.h \
-		C:/Qt/5.15.2/mingw81_32/include/QtWidgets/QVBoxLayout
+		C:/Qt/5.15.2/mingw81_32/include/QtWidgets/QVBoxLayout \
+		../bankautomat/restApiDLL/restapidll.h \
+		../bankautomat/restApiDLL/restApiDLL_global.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\saldo.o ..\bankautomat\saldo.cpp
 
 release/tilitapahtumat.o: ../bankautomat/tilitapahtumat.cpp ../bankautomat/tilitapahtumat.h \

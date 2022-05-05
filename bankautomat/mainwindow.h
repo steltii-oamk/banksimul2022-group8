@@ -6,12 +6,15 @@
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
 
-//#include "restapidll.h"
+#include "restapidll.h"
 #include "pincodedll.h"
 #include "serialportdll.h"
 #include "nosto.h"
 #include "tilitapahtumat.h"
 #include "saldo.h"
+#include <iostream>
+using namespace std;
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,7 +27,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+public slots:
+    void getnumber(QString);
 private slots:
 
     void on_bSaldo_clicked();
@@ -49,7 +53,7 @@ private:
 
     PinCodeDLL *pPinCode;
     SerialPortDLL *serial;
-    //RestApiDLL *pRestApiDLL;
+    RestApiDLL *pRestApiDLL;
 
     Nosto *pNosto;
     Saldo *pSaldo;

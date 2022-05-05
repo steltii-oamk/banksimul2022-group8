@@ -24,6 +24,7 @@ private slots:
 
     void tiliGetSlot (QNetworkReply *reply);
 
+
 private:
     Ui::Saldo *ui;
 

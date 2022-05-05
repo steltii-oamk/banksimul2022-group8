@@ -14,13 +14,13 @@ public:
     RestApiDLL(QObject *parent);
     ~RestApiDLL();
 
+
+
     void getAsiakas(QString id);
     void getTili(QString id);
     void getKortti(QString id);
     void getTili_has_Asiakas(QString id);
     void getTiliTapahtumat(QString id);
-
-
 
 private slots:
     void asiakasGetSlot(QNetworkReply*);

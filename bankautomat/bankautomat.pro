@@ -47,3 +47,8 @@ else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../build-PinCodeDLL-Des
 INCLUDEPATH += $$PWD/../PinCodeDLL
 DEPENDPATH += $$PWD/../PinCodeDLL
 
+
+win32: LIBS += -L$$PWD/build-restApiDLL-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/debug/ -lrestApiDLL
+
+INCLUDEPATH += $$PWD/restApiDLL
+DEPENDPATH += $$PWD/restApiDLL
