@@ -30,35 +30,25 @@ public:
 public slots:
     void getnumber(QString);
 private slots:
-
-    void on_bSaldo_clicked();
     void on_bNosto_clicked();
     void on_bUlos_clicked();
     void on_bTilitapahtumat_clicked();
-
     void loginPostSlot(QNetworkReply *reply);
-
-    void korttiIdSlot(QByteArray);
-
-    void tiliGetSlot (QNetworkReply *reply);
-
     void on_bSisaan_clicked();
-
+    void korttiIdSlot(QByteArray);
+    void tiliGetSlot (QNetworkReply *reply);
+    void tiliGetSlotC (QNetworkReply *reply);
+    void on_bSaldo_clicked();
+    void on_bCredit_clicked();
     void on_textSaldoo_textChanged();
-
-
-
 private:
     Ui::MainWindow *ui;
-
     PinCodeDLL *pPinCode;
     SerialPortDLL *serial;
     RestApiDLL *pRestApiDLL;
-
     Nosto *pNosto;
     Saldo *pSaldo;
     Tilitapahtumat *pTilitapahtumat;
-
     QNetworkAccessManager *getManager;
     QNetworkReply *reply;
     QByteArray response_data;

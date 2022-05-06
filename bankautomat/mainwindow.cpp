@@ -50,8 +50,6 @@ void MainWindow::on_bSisaan_clicked()
     connect(pRestApiDLL, SIGNAL(LoginSignal(QNetworkReply*)),
             this, SLOT(loginPostSlot(QNetworkReply*)));
 
-
-
     QString site_url="http://localhost:3000/login";
 
     QNetworkRequest request((site_url));
@@ -60,9 +58,7 @@ void MainWindow::on_bSisaan_clicked()
     jsonObj.insert("Kortinnumero","12345678");
     jsonObj.insert("PIN","1111");
     getManager = new QNetworkAccessManager(this);
-
     connect(getManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(loginPostSlot(QNetworkReply*)));
-
     reply = getManager->post(request, QJsonDocument(jsonObj).toJson());
 
 }
@@ -92,20 +88,52 @@ void MainWindow::on_bSaldo_clicked()
 
 }
 
+void MainWindow::on_bCredit_clicked()
+{
+    QString site_url="http://localhost:3000/tili";
+    QNetworkRequest request((site_url));
+    //WEBTOKEN ALKU
+    QByteArray myToken="Bearer " + webtoken;
+    request.setRawHeader(QByteArray("Authorization"),(myToken));
+    //WEBTOKEN LOPPU
+    getManager = new QNetworkAccessManager(this);
+
+    connect(getManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(tiliGetSlotC(QNetworkReply*)));
+
+    reply = getManager->get(request);
+}
 
 void MainWindow::tiliGetSlot (QNetworkReply *reply)
 {
- response_data=reply->readAll();
- qDebug()<<"DATA : "+response_data;
- QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
- QJsonArray json_array = json_doc.array();
- QString tili;
- foreach (const QJsonValue &value, json_array) {
-     QJsonObject json_obj = value.toObject();
-     tili+=QString::number(json_obj["Saldo"].toDouble());
-}
+    response_data=reply->readAll();
+    qDebug()<<"DATA : "+response_data;
+    QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+    QJsonArray json_array = json_doc.array();
+    QString tili;
+    foreach (const QJsonValue &value, json_array) {
+        QJsonObject json_obj = value.toObject();
+        tili+=QString::number(json_obj["Saldo"].toDouble());
+ }
 
  ui->textSaldoo->setText(tili);
+
+ reply->deleteLater();
+ getManager->deleteLater();
+}
+
+void MainWindow::tiliGetSlotC (QNetworkReply *reply)
+{
+    response_data=reply->readAll();
+    qDebug()<<"DATA : "+response_data;
+    QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+    QJsonArray json_array = json_doc.array();
+    QString tili;
+    foreach (const QJsonValue &value, json_array) {
+        QJsonObject json_obj = value.toObject();
+        tili+=QString::number(json_obj["Credit"].toDouble());
+ }
+
+ ui->textCreditt->setText(tili);
 
  reply->deleteLater();
  getManager->deleteLater();
@@ -139,4 +167,3 @@ void MainWindow::on_textSaldoo_textChanged()
 {
 
 }
-
