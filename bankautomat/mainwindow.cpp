@@ -18,11 +18,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     pRestApiDLL = new RestApiDLL(this);
 
-
     pNosto = new Nosto;
     pSaldo = new Saldo;
     pTilitapahtumat = new Tilitapahtumat;
-
 }
 
 MainWindow::~MainWindow()
@@ -38,13 +36,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::getnumber(QString s)
 {
-    qDebug() << "Tama numero tuli nyt pincodedll:sta" + s;
-}
-
-
-void MainWindow::on_bSisaan_clicked()
-{
-    pPinCode->login();
+    qDebug() << "Pinni dll:sta" + s;
 
     pRestApiDLL = new RestApiDLL(this);
     connect(pRestApiDLL, SIGNAL(LoginSignal(QNetworkReply*)),
@@ -56,13 +48,16 @@ void MainWindow::on_bSisaan_clicked()
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject jsonObj;
     jsonObj.insert("Kortinnumero","12345678");
-    jsonObj.insert("PIN","1111");
+    jsonObj.insert("PIN",s);
     getManager = new QNetworkAccessManager(this);
     connect(getManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(loginPostSlot(QNetworkReply*)));
     reply = getManager->post(request, QJsonDocument(jsonObj).toJson());
-
 }
 
+void MainWindow::on_bSisaan_clicked()
+{
+    pPinCode->login();
+}
 
 void MainWindow::loginPostSlot(QNetworkReply *reply)
 {
@@ -70,7 +65,6 @@ void MainWindow::loginPostSlot(QNetworkReply *reply)
     qDebug()<<"DATA : "+response_data;
     webtoken = response_data;
 }
-
 
 void MainWindow::on_bSaldo_clicked()
 {
@@ -113,12 +107,12 @@ void MainWindow::tiliGetSlot (QNetworkReply *reply)
     foreach (const QJsonValue &value, json_array) {
         QJsonObject json_obj = value.toObject();
         tili+=QString::number(json_obj["Saldo"].toDouble());
- }
+    }
 
- ui->textSaldoo->setText(tili);
+    ui->textSaldoo->setText(tili);
 
- reply->deleteLater();
- getManager->deleteLater();
+    reply->deleteLater();
+    getManager->deleteLater();
 }
 
 void MainWindow::tiliGetSlotC (QNetworkReply *reply)
@@ -131,39 +125,36 @@ void MainWindow::tiliGetSlotC (QNetworkReply *reply)
     foreach (const QJsonValue &value, json_array) {
         QJsonObject json_obj = value.toObject();
         tili+=QString::number(json_obj["Credit"].toDouble());
- }
+    }
 
- ui->textCreditt->setText(tili);
+    ui->textCreditt->setText(tili);
 
- reply->deleteLater();
- getManager->deleteLater();
+    reply->deleteLater();
+    getManager->deleteLater();
 }
-
 
 void MainWindow::korttiIdSlot(QByteArray)
 {
     //tee jotain vastaanotetulla korttiID:lla
 }
 
-
 void MainWindow::on_bNosto_clicked()
 {
     pNosto->exec();
 }
-
 
 void MainWindow::on_bTilitapahtumat_clicked()
 {
     pTilitapahtumat->exec();
 }
 
-
-void MainWindow::on_bUlos_clicked()
-{
-    close();
-}
-
 void MainWindow::on_textSaldoo_textChanged()
 {
 
+}
+
+void MainWindow::on_bUlos_clicked()
+{
+    webtoken = 0000;
+    qDebug() << "Kirjauduttu ulos";
 }

@@ -27,12 +27,6 @@ private slots:
 
 private:
     Ui::Saldo *ui;
-
-    QNetworkAccessManager *getManager;
-    QNetworkReply *reply;
-    QByteArray response_data;
-
-    QByteArray webtoken;
 };
 
 #endif // SALDO_H

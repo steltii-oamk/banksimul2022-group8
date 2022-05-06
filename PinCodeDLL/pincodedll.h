@@ -1,15 +1,11 @@
 #ifndef PINCODEDLL_H
 #define PINCODEDLL_H
 
-
 #include <QtNetwork>
 #include <QNetworkAccessManager>
 
 #include "PinCodeDLL_global.h"
 #include "logindialog.h"
-#include <QObject>
-#include <iostream>
-using namespace std;
 
 class PINCODEDLL_EXPORT PinCodeDLL  :public QObject
 {

@@ -92,6 +92,12 @@
               <height>75</height>
              </size>
             </property>
+            <property name="maximumSize">
+             <size>
+              <width>500</width>
+              <height>75</height>
+             </size>
+            </property>
             <property name="readOnly">
              <bool>true</bool>
             </property>
@@ -130,6 +136,12 @@
             <property name="minimumSize">
              <size>
               <width>150</width>
+              <height>75</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
               <height>75</height>
              </size>
             </property>

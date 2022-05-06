@@ -18,6 +18,8 @@ public:
 private slots:
     void on_tClose_clicked();
 
+    void on_tTextTilitapahtumat_textChanged();
+
 private:
     Ui::Tilitapahtumat *ui;
 };
